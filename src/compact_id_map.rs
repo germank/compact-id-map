@@ -128,7 +128,7 @@ I: Hash + Incrementable + Default + Eq + Copy
     fn fresh_id(&mut self) -> I {
         if self.recycle_bin.is_empty() {
             let id = self.next_new_id;
-            self.next_new_id.increment();
+            self.next_new_id = self.next_new_id.increment().unwrap();
             id
         } else {
             self.recycle_bin.pop().unwrap()
